@@ -9,7 +9,6 @@ import DashBoard from '../../components/DashBoard';
 import axiosInstance from '../../utils/axiosInstance';
 
 const DashBoardPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
 const {userPicture} = useSelector((state)=>state.userInfoSlice)
   const [subscribeArr, setSubscribeArr] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
 
@@ -67,11 +66,10 @@ const {userPicture} = useSelector((state)=>state.userInfoSlice)
     <>
       <BorderLayout>
         <Layout>
-          <LeftContent themeState={themeState}>
+          <LeftContent >
             <UserProfileImage src={userPicture} />
             <a href='/mypage' className='web'>
               <BasicButton
-                themeState={themeState}
                 width='100%'
                 height='4rem'
                 color='var(--color-white)'
@@ -81,7 +79,7 @@ const {userPicture} = useSelector((state)=>state.userInfoSlice)
                 selected
               />
             </a>
-            <SubscribeWrapper themeState={themeState}>
+            <SubscribeWrapper >
               {category.map((el) => (
                 <CategoryCardMobile
                   key={el.questionCategoryId}
@@ -94,7 +92,6 @@ const {userPicture} = useSelector((state)=>state.userInfoSlice)
             </SubscribeWrapper>
             <a href='/userimg'>
               <BasicButton
-                themeState={themeState}
                 width='100%'
                 height='4rem'
                 color='var(--color-white)'
@@ -105,7 +102,6 @@ const {userPicture} = useSelector((state)=>state.userInfoSlice)
             </a>
             <a href='/username'>
               <BasicButton
-                themeState={themeState}
                 width='100%'
                 height='4rem'
                 color='var(--color-white)'
@@ -116,7 +112,6 @@ const {userPicture} = useSelector((state)=>state.userInfoSlice)
             </a>
             <a href='/userpassword'>
               <BasicButton
-                themeState={themeState}
                 width='100%'
                 height='4rem'
                 color='var(--color-white)'
@@ -126,7 +121,7 @@ const {userPicture} = useSelector((state)=>state.userInfoSlice)
               />
             </a>
           </LeftContent>
-          <RightContent themeState={themeState}>
+          <RightContent >
             <DashBoard
               handleSubscribe={handleSubscribe}
               subscribeArr={subscribeArr}
@@ -189,7 +184,7 @@ const RightContent = styled.div`
   width: 80%;
   border: 1rem solid
     ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-orange)'
         : 'var(--color-gray)'};
   border-radius: 1.5rem;
@@ -209,12 +204,12 @@ const SubscribeWrapper = styled.div`
   width: 100%;
   height: fit-content;
   background-color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? 'var(--color-white)'
       : 'var(--color-dark-bg-color)'};
   border: 0.7rem solid
     ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-orange)'
         : 'var(--color-gray)'};
   border-radius: 1rem;

@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 import NavigationBar from '../components/NavigationBar';
-import { useSelector } from 'react-redux';
 
 const BorderLayout = ({ children }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
 
   return (
     <>
-      <NavigationBar themeState={themeState} />
-      <Container themeState={themeState}>
-        <Wrapper themeState={themeState}>{children}</Wrapper>
+      <NavigationBar />
+      <Container>
+        <Wrapper>{children}</Wrapper>
       </Container>
     </>
   );
@@ -29,19 +27,19 @@ const Wrapper = styled.div`
   width: 85%;
   height: 100%;
   background-color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? 'var(--color-white)'
       : 'var(--color-dark-bg-color)'};
   border: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? '1rem solid var(--color-orange);'
       : '1rem solid var(--color-gray);'};
   border-radius: 1.5rem;
   h1 {
       font-size: 200%;
       font-weight: bold;
-      color: ${(props) =>
-        props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+      color: ${(theme) =>
+        theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
     }
 `;
 export default BorderLayout;

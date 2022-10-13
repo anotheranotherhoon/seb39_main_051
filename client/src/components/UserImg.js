@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import BasicButton from './BasicButton';
 
 const UserImg = ({ handleImgInput, handleOnClick }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const {userPicture} = useSelector((state)=>state.userInfoSlice)
   return (
     <>
@@ -12,11 +11,10 @@ const UserImg = ({ handleImgInput, handleOnClick }) => {
         <UserProfileImage src={userPicture}/>
         <div>
           <span>사진을 드래그해주세요.</span>
-          <InputImgWrapper themeState={themeState}>
+          <InputImgWrapper >
             <InputImg type='file' accept='image/*' onChange={handleImgInput} />
           </InputImgWrapper>
           <BasicButton
-            themeState={themeState}
             width='20%'
             height='4rem'
             color='var(--color-white)'
@@ -72,7 +70,7 @@ const InputImgWrapper = styled.div`
   width: 100%;
   height: 70%;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border-radius: 1.5rem;
   margin-bottom: 2%;

@@ -13,7 +13,7 @@ const DropDownMenu = (props) => {
   return (
     <>
       {props.mobile ? (
-        <ItemListWrapper mobile themeState={props.themeState}>
+        <ItemListWrapper mobile>
           {isLoggedIn ? (
             <ItemList mobile>
               <a href='/questions'>질문 답변 공유 게시판</a>
@@ -37,7 +37,7 @@ const DropDownMenu = (props) => {
           )}
         </ItemListWrapper>
       ) : (
-        <ItemListWrapper themeState={props.themeState}>
+        <ItemListWrapper>
           <ItemList>
             <a href='/questions/Java'>
               <span>Java</span>
@@ -101,7 +101,7 @@ const ItemListWrapper = styled.div`
   width: ${(props) => (props.mobile ? 'fit-content' : '52.5rem')};
   padding-left: ${(props) => (props.mobile ? '0' : '2rem')};
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   right: 0px;
 `;
 
@@ -114,7 +114,7 @@ const ItemList = styled.div`
   font-size: 1.6rem;
   line-height: 2.5rem;
   color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? 'var(--color-black)'
       : 'var(--color-white);'};
 

@@ -20,7 +20,6 @@ const Comment = ({
   setCommentArr,
   picture
 }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { isLoggedIn, userId } = useSelector((state) => state.userInfoSlice);
   const navigate = useNavigate();
   //댓글수정
@@ -81,7 +80,7 @@ const Comment = ({
   };
 
   return (
-    <Layout themeState={themeState}>
+    <Layout>
       <Toast />
       <CommentInfo>
         <CommentWriter>
@@ -124,7 +123,7 @@ const Comment = ({
           </EventWrapper>
         </CommentEvent>
       </CommentInfo>
-      <CommentContent themeState={themeState}>
+      <CommentContent>
         {isCommentEditMode ? (
           <form>
             <label id='editedComment' />
@@ -181,11 +180,11 @@ const CommentContent = styled.div`
     width: 100%;
     border: 1px solid #d4d4d4;
     background: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     color: ${(props) =>
-      props.themeState === 'light' ? 'var(--color-black)' : '#D4D4D4'};
+      props.theme.theme === 'light' ? 'var(--color-black)' : '#D4D4D4'};
   }
   .commentContent {
     width: 85%;

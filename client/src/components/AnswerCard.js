@@ -21,7 +21,6 @@ const AnswerCard = ({
   answer,
   setAnswer,
 }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const navigate = useNavigate();
   const { isLoggedIn, userId } = useSelector((state) => state.userInfoSlice);
   const [isCommentShow, setIsCommentShow] = useState(false);
@@ -112,7 +111,7 @@ const AnswerCard = ({
   };
 
   return (
-    <Layout themeState={themeState}>
+    <Layout>
       <Toast />
       <AnswerInfo>
         <AnswerWriter>
@@ -155,8 +154,8 @@ const AnswerCard = ({
           </EventWrapper>
         </AnswerEvent>
       </AnswerInfo>
-      <AnswerLayout themeState={themeState}>
-        <AnswerContent themeState={themeState}>
+      <AnswerLayout>
+        <AnswerContent>
           {isAnswerEditMode ? (
             <div className='formWrapper'>
               <form>
@@ -178,7 +177,7 @@ const AnswerCard = ({
           </div>
         </AnswerContent>
       </AnswerLayout>
-      <AnswerCommentInput themeState={themeState}>
+      <AnswerCommentInput>
         <label id='comment' />
         <input
           placeholder='댓글을 입력하세요'
@@ -194,7 +193,7 @@ const AnswerCard = ({
       </AnswerCommentInput>
       {isCommentShow ? (
         <>
-          <ToggleComment themeState onClick={() => toggleCommentShow()}>
+          <ToggleComment onClick={() => toggleCommentShow()}>
             댓글 숨기기
           </ToggleComment>
           {answerComment.map((el) => (
@@ -216,7 +215,6 @@ const AnswerCard = ({
       ) : (
         <>
           <ToggleComment
-            themeState
             onClick={() => toggleCommentShow()}
           >{`총 ${answerComment.length} 개의 댓글이 있습니다.`}</ToggleComment>
         </>
@@ -230,13 +228,13 @@ const Layout = styled.div`
   flex-direction: column;
   padding: 1rem;
   font-size: 1.3rem;
-  background-color: ${(props) =>
-    props.themeState === 'light' ? '#ffffff' : '#2d2d2d'};
+  background-color: ${(theme) =>
+    theme.theme === 'light' ? '#ffffff' : '#2d2d2d'};
   width: 100%;
   border: 1px solid #d4d4d4;
   margin-bottom: 1rem;
-  color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+  color: ${(theme) =>
+    theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
 `;
 const AnswerInfo = styled.div`
   display: flex;
@@ -266,8 +264,8 @@ const AnswerLayout = styled.div`
 const AnswerContent = styled.div`
   display: flex;
   width: 100%;
-  background: ${(props) =>
-    props.themeState === 'light'
+  background: ${(theme) =>
+    theme.theme === 'light'
       ? 'var(--color-white)'
       : 'var(--color-dark-bg-color )'};
   .formWrapper {
@@ -280,12 +278,12 @@ const AnswerContent = styled.div`
   textarea {
     width: 100%;
     border: 1px solid #d4d4d4;
-    background: ${(props) =>
-      props.themeState === 'light'
+    background: ${(theme) =>
+      theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
-    color: ${(props) =>
-      props.themeState === 'light' ? 'var(--color-black)' : '#D4D4D4'};
+    color: ${(theme) =>
+      theme.theme === 'light' ? 'var(--color-black)' : '#D4D4D4'};
   }
   .answerContent {
     font-size: 2rem;
@@ -309,13 +307,13 @@ const AnswerCommentInput = styled.div`
     width: 85%;
     margin-right: 0.5%;
     border: 1px solid #d4d4d4;
-    background: ${(props) =>
-      props.themeState === 'light'
+    background: ${(theme) =>
+      theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border-radius: 0.3rem;
-    color: ${(props) =>
-      props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+    color: ${(theme) =>
+      theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
   }
   button {
     width: 5%;

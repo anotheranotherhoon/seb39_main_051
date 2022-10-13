@@ -4,13 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
 
 const Search = ({ handleEnter }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
 
   return (
     <>
-      <SearchBar themeState={themeState}>
+      <SearchBar >
         <SearchInput
-          themeState={themeState}
           type='text'
           placeholder='검색'
           onKeyDown={handleEnter}
@@ -30,7 +28,7 @@ const SearchBar = styled.div`
   height: 4rem;
   font-size: 1.3rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border-radius: 1.5rem;
   margin: 1rem 0 1rem 1rem;
@@ -46,7 +44,7 @@ const SearchInput = styled.input`
   height: 4rem;
   font-size: 1.3rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border-radius: 1.5rem;
   border: none;

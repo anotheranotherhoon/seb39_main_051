@@ -7,7 +7,6 @@ import axiosInstance from '../utils/axiosInstance';
 import BorderLayout from '../components/BorderLayout';
 
 const AnswerPostPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { state } = useLocation();
   const { isLoggedIn, userId, nickName } = useSelector(
     (state) => state.userInfoSlice
@@ -44,11 +43,11 @@ const AnswerPostPage = () => {
     <BorderLayout>
       <form>
         <h1>답변 작성</h1>
-        <Title themeState={themeState}>{title}</Title>
+        <Title>{title}</Title>
         <ContentInfo>
-          <Category themeState={themeState}>{category}</Category>
+          <Category>{category}</Category>
         </ContentInfo>
-        <InputWrapper themeState={themeState}>
+        <InputWrapper>
           <label id='content' />
           <textarea
             id='content'
@@ -63,7 +62,6 @@ const AnswerPostPage = () => {
       </form>
       <ButtonWrapper>
         <BasicButton
-          themeState={themeState}
           width='5.5rem'
           height='4rem'
           color='var(--color-white)'
@@ -73,7 +71,6 @@ const AnswerPostPage = () => {
           onClick={handleAnswerPostCancel}
         />
         <BasicButton
-          themeState={themeState}
           width='5.5rem'
           height='4rem'
           color='var(--color-white)'
@@ -96,11 +93,11 @@ const InputWrapper = styled.div`
     resize: none;
     margin: 0.5rem 0;
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
     background-color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border: 1px solid #d2d2d2;
@@ -113,10 +110,10 @@ const Category = styled.div`
   padding: 1rem;
   border-radius: 1.5rem;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-white)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-white)' : '#D2D2D2'};
   text-align: center;
   background-color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? ' var(--color-orange)'
       : 'var(--color-gray)'};
   min-width: 8.8rem;
@@ -129,9 +126,9 @@ const Title = styled.div`
   font-weight: bold;
   margin: 0.5rem 0;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-white)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-white)' : 'var(--color-gray)'};
   border-radius: 0.3rem;
   border: 1px solid #d2d2d2;
   align-items: center;

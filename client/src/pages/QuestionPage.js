@@ -10,7 +10,6 @@ import Toast from '../components/Toast';
 import axiosInstance from '../utils/axiosInstance';
 import axios from 'axios';
 const QuestionPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { isLoggedIn, userId } = useSelector((state) => state.userInfoSlice);
   const params = useParams();
   const navigate = useNavigate();
@@ -100,10 +99,10 @@ const QuestionPage = () => {
     <>
       <BorderLayout>
         <Toast />
-        <Title themeState={themeState}>{content}</Title>
+        <Title>{content}</Title>
         <ContentInfo>
-          <Category themeState={themeState}>{category}</Category>
-          <Writer themeState={themeState}>
+          <Category>{category}</Category>
+          <Writer>
             <img src={picture} alt='프로필사진' />
             {nickname}
           </Writer>
@@ -128,7 +127,7 @@ const QuestionPage = () => {
           </EventWrapper>
         </ContentInfo>
         <CenterWrapper>
-          <AnswerToTal themeState={themeState}>
+          <AnswerToTal>
             답변 {answer.length}개
           </AnswerToTal>
           <BasicButton
@@ -169,7 +168,7 @@ const Title = styled.div`
   font-size: 2rem;
   font-weight: bold;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
 `;
 const ContentInfo = styled.div`
   display: flex;
@@ -181,10 +180,10 @@ const Category = styled.div`
   padding: 1rem;
   border-radius: 1.5rem;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-white)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-white)' : '#D2D2D2'};
   text-align: center;
   background-color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? ' var(--color-orange)'
       : 'var(--color-gray)'};
   min-width: 8.8rem;
@@ -198,7 +197,7 @@ const Writer = styled.div`
   margin-right: 1rem;
   max-width: 11.8rem;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
   img {
     display: inline;
     height: 2.4rem;
@@ -227,7 +226,7 @@ const AnswerToTal = styled.div`
   font-weight: bold;
   margin-right: auto;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
 `;
 
 const EventWrapper = styled.div`

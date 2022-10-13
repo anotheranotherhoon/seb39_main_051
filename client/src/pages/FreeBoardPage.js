@@ -11,7 +11,6 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const FreeBoardPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { isLoggedIn } = useSelector((state) => state.userInfoSlice);
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
@@ -104,12 +103,11 @@ const FreeBoardPage = () => {
       <NavigationBar />
       <ContentWrapper>
         <MenuWrapper>
-          <TapMenu themeState={themeState} type='free' />
-          <Search themeState={themeState} handleEnter={handleEnter} />
+          <TapMenu type='free' />
+          <Search handleEnter={handleEnter} />
         </MenuWrapper>
         <ButtonWrapper>
           <BasicButton
-            themeState={themeState}
             width='10rem'
             height='4rem'
             color='var(--color-white)'
@@ -122,7 +120,6 @@ const FreeBoardPage = () => {
         <PostSummaryWrapper>
           {data.map((el) => (
             <PostSummary
-              themeState={themeState}
               key={el.postId}
               title={el.title}
               category={el.category}
@@ -135,7 +132,6 @@ const FreeBoardPage = () => {
           ))}
         </PostSummaryWrapper>
         <Pagination
-          themeState={themeState}
           type='자유게시판'
           page={page}
           size={size}

@@ -9,7 +9,6 @@ import BorderLayout from '../components/BorderLayout';
 import axiosInstance from '../utils/axiosInstance';
 
 const PostPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const navigate = useNavigate();
   const { type, category } = useLocation().state;
   const [categoryContent, setCategoryContent] = useState(1);
@@ -151,7 +150,7 @@ const PostPage = () => {
         {type === 'questions' ? (
           <InputWrapper></InputWrapper>
         ) : (
-          <InputWrapper themeState={themeState}>
+          <InputWrapper>
             <label id='title' />
             <input
               id='title'
@@ -171,7 +170,7 @@ const PostPage = () => {
           setSelected={setSelected}
           handleCategory={handleCategory}
         />
-        <InputWrapper themeState={themeState}>
+        <InputWrapper>
           <label id='content' />
           {type === 'questions' ? (
             <textarea
@@ -197,7 +196,6 @@ const PostPage = () => {
         </InputWrapper>
         <ButtonWrapper>
           <BasicButton
-            themeState={themeState}
             width='5.5rem'
             height='4rem'
             color='var(--color-white)'
@@ -207,7 +205,6 @@ const PostPage = () => {
             onClick={handleCancel}
           />
           <BasicButton
-            themeState={themeState}
             width='5.5rem'
             height='4rem'
             color='var(--color-white)'
@@ -230,11 +227,11 @@ const InputWrapper = styled.div`
     font-size: 1.8rem;
     margin: 0.5rem 0;
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
     background-color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border: 1px solid #d2d2d2;
@@ -248,11 +245,11 @@ const InputWrapper = styled.div`
     resize: none;
     margin: 0.5rem 0;
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
     background-color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border: 1px solid #d2d2d2;

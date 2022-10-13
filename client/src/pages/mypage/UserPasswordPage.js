@@ -9,7 +9,6 @@ import UserPassword from '../../components/UserPassword';
 import axiosInstance from '../../utils/axiosInstance';
 
 const UserPasswordPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const {userPicture} = useSelector((state) => state.userInfoSlice);
 
   const [passwordValid, setPasswordValid] = useState(false);
@@ -90,7 +89,7 @@ const UserPasswordPage = () => {
     <>
       <BorderLayout>
         <Layout>
-          <LeftContent themeState={themeState}>
+          <LeftContent>
             <div className='mobile'>
               <a href='/mypage'>
                 <FontAwesomeIcon
@@ -104,7 +103,6 @@ const UserPasswordPage = () => {
                 <UserPasswordInput
                   className='newPassword'
                   name='newPassword'
-                  themeState={themeState}
                   type='password'
                   placeholder='새 비밀번호'
                   onChange={handleInput}
@@ -116,7 +114,6 @@ const UserPasswordPage = () => {
                 <UserPasswordInput
                   className='checkPassword'
                   name='checkPassword'
-                  themeState={themeState}
                   type='password'
                   placeholder='새 비밀번호 확인'
                   onChange={handleInput}
@@ -126,7 +123,6 @@ const UserPasswordPage = () => {
                   <span>{rePasswordDesc}</span>
                 </div>
                 <BasicButton
-                  themeState={themeState}
                   width='30%'
                   height='3rem'
                   color='var(--color-white)'
@@ -141,7 +137,6 @@ const UserPasswordPage = () => {
               <UserProfileImage src={userPicture} />
               <a href='/mypage'>
                 <BasicButton
-                  themeState={themeState}
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -152,7 +147,6 @@ const UserPasswordPage = () => {
               </a>
               <a href='/userimg'>
                 <BasicButton
-                  themeState={themeState}
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -163,7 +157,6 @@ const UserPasswordPage = () => {
               </a>
               <a href='/username'>
                 <BasicButton
-                  themeState={themeState}
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -174,7 +167,6 @@ const UserPasswordPage = () => {
               </a>
               <a href='/userpassword'>
                 <BasicButton
-                  themeState={themeState}
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -186,7 +178,7 @@ const UserPasswordPage = () => {
               </a>
             </div>
           </LeftContent>
-          <RightContent themeState={themeState}>
+          <RightContent>
             <UserPassword
               handleInput={handleInput}
               handleOnClick={handleOnClick}
@@ -291,7 +283,7 @@ const RightContent = styled.div`
   width: 80%;
   border: 1rem solid
     ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-orange)'
         : 'var(--color-gray)'};
   border-radius: 1.5rem;
@@ -306,7 +298,7 @@ const UserPasswordInput = styled.input`
   width: 100%;
   height: 3rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border: none;
   border-radius: 1.5rem;

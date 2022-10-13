@@ -10,19 +10,17 @@ const UserPassword = ({
   passwordDesc,
   rePasswordDesc,
 }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
 
   return (
     <>
       <Title>비밀번호 변경</Title>
       <ContentWrapper>
         <form>
-          <InputWrapper themeState={themeState}>
+          <InputWrapper>
             <label htmlFor='newPassword'>새 비밀번호: </label>
             <UserPasswordInput
               id='newPassword'
               name='newPassword'
-              themeState={themeState}
               type='password'
               onChange={handleInput}
               onKeyUp={passwordValidation}
@@ -31,12 +29,11 @@ const UserPassword = ({
           <div className='warning'>
             <span>{passwordDesc}</span>
           </div>
-          <InputWrapper themeState={themeState}>
+          <InputWrapper >
             <label htmlFor='checkPassword'>새 비밀번호 확인: </label>
             <UserPasswordInput
               id='checkPassword'
               name='checkPassword'
-              themeState={themeState}
               type='password'
               onChange={handleInput}
               onKeyUp={rePasswordValidation}
@@ -46,7 +43,6 @@ const UserPassword = ({
             <span>{rePasswordDesc}</span>
           </div>
           <BasicButton
-            themeState={themeState}
             width='30%'
             height='3rem'
             color='var(--color-white)'
@@ -99,7 +95,7 @@ const UserPasswordInput = styled.input`
   width: 50rem;
   height: 3rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border: none;
   border-radius: 1.5rem;

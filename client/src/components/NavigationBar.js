@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { handleLogout } from '../redux/slice/userInfoSlice';
 
 const NavigationBar = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { isLoggedIn, nickName } = useSelector((state) => state.userInfoSlice);
   const [userNickName, setUserNickName] = useState(nickName || '마이 페이지');
   const dispatch = useDispatch()
@@ -17,8 +16,8 @@ const NavigationBar = () => {
 
   return (
     <>
-      <NavBar themeState={themeState}>
-        <NavBarLogo themeState={themeState} href='/'>
+      <NavBar>
+        <NavBarLogo href='/'>
           <Logo />
         </NavBarLogo>
         <DropDown mobile>
@@ -28,36 +27,36 @@ const NavigationBar = () => {
             src='https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_bars.svg'
             alt='메뉴버튼'
           />
-          <DropDownMenu mobile themeState={themeState} />
+          <DropDownMenu mobile />
         </DropDown>
         <DropDown web>
-          <NavBarMenu web themeState={themeState}>
+          <NavBarMenu web>
             <a href='/questions'>질문 답변 공유 게시판</a>
             <a href='/free'>자유 게시판</a>
             <a href='/suggestion'>건의 게시판</a>
           </NavBarMenu>
-          <DropDownMenu themeState={themeState} />
+          <DropDownMenu />
         </DropDown>
         {isLoggedIn ? (
-          <NavBarRight web themeState={themeState}>
+          <NavBarRight web>
             <DarkModeSwitch>토글</DarkModeSwitch>
             <a href='/mypage'>
-              <NavBarButton themeState={themeState}>
+              <NavBarButton>
                 {userNickName}
               </NavBarButton>
             </a>
-            <NavBarButton themeState={themeState} onClick={()=>dispatch(handleLogout({home:navigate}))}>
+            <NavBarButton onClick={()=>dispatch(handleLogout({home:navigate}))}>
               로그아웃
             </NavBarButton>
           </NavBarRight>
         ) : (
-          <NavBarRight web themeState={themeState}>
+          <NavBarRight web>
             <DarkModeSwitch>토글</DarkModeSwitch>
             <a href='/login'>
-              <NavBarButton themeState={themeState}>로그인</NavBarButton>
+              <NavBarButton>로그인</NavBarButton>
             </a>
             <a href='/signup'>
-              <NavBarButton themeState={themeState}>회원가입</NavBarButton>
+              <NavBarButton>회원가입</NavBarButton>
             </a>
           </NavBarRight>
         )}
@@ -76,7 +75,7 @@ const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
 
   @media screen and (min-width: 413px) {
@@ -94,7 +93,7 @@ const NavBarLogo = styled.a`
   word-break: keep-all;
   color: var(--color-white);
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   font-size: 1.6rem;
   width: 28rem;
   height: 6rem;
@@ -111,7 +110,7 @@ const NavBarMenu = styled.div`
   justify-content: space-around;
   align-items: center;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   font-size: 1.6rem;
   width: 52.5rem;
   height: 6rem;
@@ -139,7 +138,7 @@ const NavBarRight = styled.div`
   align-items: center;
   height: 6rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
 
   span {
     word-break: keep-all;
@@ -161,7 +160,7 @@ const NavBarRight = styled.div`
 const NavBarButton = styled.button`
   width: 9.5rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border: none;
   font-size: 1.6rem;

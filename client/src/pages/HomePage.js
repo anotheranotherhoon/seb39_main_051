@@ -31,7 +31,6 @@ const arr = [
 ];
 
 const HomePage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
 
   useEffect(() => {
     if (getCookie('accessToken')) {
@@ -46,8 +45,8 @@ const HomePage = () => {
 
   return (
     <>
-      <NavigationBar themeState={themeState} />
-      <Container themeState={themeState}>
+      <NavigationBar />
+      <Container>
         <Wrapper>
           <ScrollContainer>
             <ScrollPage page={0}>
@@ -74,7 +73,7 @@ const HomePage = () => {
             </ScrollPage>
             <ScrollPage page={2}>
               <Animator animation={batch(Sticky(), Fade(), MoveOut(0, -200))}>
-                <ColorFont themeState={themeState}>
+                <ColorFont>
                   <div className='sectionTwo web'>
                     면접에서 승리하기 위한 평범하지만
                   </div>
@@ -167,9 +166,9 @@ const HomePage = () => {
               </Animator>
             </ScrollPage>
             <ScrollPage page={6}>
-              <ProjectInfo themeState={themeState}>
+              <ProjectInfo>
                 <Animator>
-                  <ProjectName themeState={themeState}>
+                  <ProjectName>
                     CODESTATES SEB 39기 <br /> 51조 Main Project 매일메일
                     <a href='https://github.com/codestates-seb/seb39_main_051'>
                       <FontAwesomeIcon icon={faGithub} />
@@ -217,7 +216,7 @@ const Container = styled.div`
   font-size: 1.3rem;
   font-family: 'Noto Sans KR', sans-serif;
   background: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? 'linear-gradient(black  50%, white)'
       : 'linear-gradient(black  50%, var(--color-dark-bg-color) )'};
 `;
@@ -231,7 +230,7 @@ const ProjectInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : 'var(--color-white)'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : 'var(--color-white)'};
   font-size: 2rem;
   font-weight: bold;
   height: 100%;
@@ -241,13 +240,13 @@ const ProjectInfo = styled.div`
   svg {
     margin-left: 0.5rem;
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
   }
   .member {
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
   }
@@ -257,7 +256,7 @@ const ProjectName = styled.div`
   margin-bottom: 1rem;
   font-size: 300%;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : 'var(--color-white)'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : 'var(--color-white)'};
   @media screen and (max-width: 413px) {
     font-size: 100%;
   }
@@ -316,7 +315,7 @@ const ColorFont = styled.div`
     font-weight: bold;
     color: transparent;
     background: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'linear-gradient(40deg, #ff6c02, #ffa69e)'
         : 'linear-gradient(40deg, #0f52ba, #89CFF0)'};
     -webkit-background-clip: text;

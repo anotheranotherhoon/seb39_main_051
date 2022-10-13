@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import axiosInstance from '../utils/axiosInstance';
 
 const SubscribePage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const [subscribeArr, setSubscribeArr] = useState([]);
   const arr = [
     { categoryName: 'React', questionCategoryId: 2 },
@@ -62,7 +61,7 @@ const SubscribePage = () => {
   }, []);
   return (
     <BorderLayout>
-      <Message themeState={themeState}>
+      <Message>
         <section>
           <div>주제를 클릭하여 구독해주세요</div>
           <div>매일 아침 7시 이메일로 </div>
@@ -108,7 +107,7 @@ const Message = styled.div`
   font-size: 1vw;
   margin-bottom: 3%;
   justify-content: center;
-  color: ${(props) => (props.themeState === 'light') === 'var(--color-black)'};
+  color: ${(props) => (props.theme.theme === 'light') === 'var(--color-black)'};
   div {
     justify-content: start;
     margin-bottom: 2%;

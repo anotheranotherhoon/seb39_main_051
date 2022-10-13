@@ -2,11 +2,10 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const TapMenu = ({ type }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
 
   return (
     <>
-      <TapWrapper themeState={themeState}>
+      <TapWrapper>
         {type === 'answer' ? (
           <>
             <a href='/questions'>
@@ -83,7 +82,7 @@ const TapWrapper = styled.div`
   height: fit-content;
   font-size: 1.3rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   border-radius: 1.5rem;
   color: var(--color-white);
   margin: 1rem 0;

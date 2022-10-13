@@ -1,12 +1,9 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DropDownList = (props) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
-
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (e) => {
@@ -16,14 +13,14 @@ const DropDownList = (props) => {
   return (
     <>
       <DropDownWrapper onClick={handleClick}>
-        <StyledUl themeState={themeState}>
+        <StyledUl >
           <li>{`${props.seleted}`}</li>
           <FontAwesomeIcon icon={faAngleDown} />
         </StyledUl>
         {props.type === 'questions' ? (
           isOpen ? (
             <>
-              <StyledUl active themeState={themeState}>
+              <StyledUl active >
                 <li onClick={(e)=>props.handleCategory(e)}>Java</li>
                 <li onClick={(e)=>props.handleCategory(e)}>Javascript</li>
                 <li onClick={(e)=>props.handleCategory(e)}>React</li>
@@ -40,7 +37,7 @@ const DropDownList = (props) => {
         ) : props.type === 'free' ? (
           isOpen ? (
             <>
-              <StyledUl active themeState={themeState}>
+              <StyledUl active >
                 <li onClick={(e)=>props.handleCategory(e)}>취업 정보</li>
                 <li onClick={(e)=>props.handleCategory(e)}>고민 상담</li>
                 <li onClick={(e)=>props.handleCategory(e)}>유머</li>
@@ -52,7 +49,7 @@ const DropDownList = (props) => {
           )
         ) : isOpen ? (
           <>
-            <StyledUl active themeState={themeState}>
+            <StyledUl active >
               <li onClick={(e)=>props.handleCategory(e)}>질문 추가 요청</li>
               <li onClick={(e)=>props.handleCategory(e)}>질문 수정 요청</li>
               <li onClick={(e)=>props.handleCategory(e)}>기타</li>
@@ -81,7 +78,7 @@ const StyledUl = styled.ul`
   height: 4rem;
   padding: 0.5rem 1rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   border-radius: 1rem;
   color:var(--color-white);
   cursor: pointer;
@@ -95,7 +92,7 @@ const StyledUl = styled.ul`
         top: 4rem;
         height: fit-content;
         border-top: ${(props) =>
-          props.themeState === 'light'
+          props.theme.theme === 'light'
             ? '0.1rem solid #d2d2d2'
             : '0.1rem solid var(--color-gray)'};
 
@@ -111,11 +108,11 @@ const StyledUl = styled.ul`
 
         & li:hover {
           background-color: ${(props) =>
-            props.themeState === 'light'
+            props.theme.theme === 'light'
               ? 'var(--color-yellow)'
               : 'var(--color-gray)'};
           color: ${(props) =>
-            props.themeState === 'light'
+            props.theme.theme === 'light'
               ? 'var(--color-black)'
               : 'var(--color-white)'};
         }

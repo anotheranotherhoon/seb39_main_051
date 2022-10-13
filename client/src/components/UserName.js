@@ -6,7 +6,6 @@ import { setCookie } from '../utils/cookie';
 import BasicButton from './BasicButton';
 
 const UserName = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const {userPicture} = useSelector((state)=>state.userInfoSlice)
 
   const [nickName, setNickName] = useState(
@@ -36,12 +35,10 @@ const UserName = () => {
         <UserProfileImage src={userPicture} />
         <div>
           <UserNameInput
-            themeState={themeState}
             placeholder='변경할 닉네임을 입력하세요.'
             onChange={handleInput}
           />
           <BasicButton
-            themeState={themeState}
             width='20%'
             height='3rem'
             color='var(--color-white)'
@@ -89,7 +86,7 @@ const UserNameInput = styled.input`
   width: 50%;
   height: 3rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border: none;
   border-radius: 1.5rem;

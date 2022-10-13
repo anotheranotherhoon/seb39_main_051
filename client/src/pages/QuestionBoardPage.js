@@ -11,9 +11,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const QuestionBoardPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { role } = useSelector((state) => state.userInfoSlice);
-
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
   const [total, setTotal] = useState(1);
@@ -112,13 +110,12 @@ const QuestionBoardPage = () => {
       <NavigationBar />
       <ContentWrapper>
         <MenuWrapper>
-          <TapMenu themeState={themeState} type='answer' />
-          <Search themeState={themeState} handleEnter={handleEnter} />
+          <TapMenu  type='answer' />
+          <Search  handleEnter={handleEnter} />
         </MenuWrapper>
         <ButtonWrapper>
           {role === 'ROLE_ADMIN' ? (
             <BasicButton
-              themeState={themeState}
               width='10rem'
               height='4rem'
               color='var(--color-white)'
@@ -134,7 +131,6 @@ const QuestionBoardPage = () => {
         <PostSummaryWrapper>
           {data.map((el) => (
             <PostSummary
-              themeState={themeState}
               key={el.questionId}
               title={el.content}
               category={el.questionCategory.name}
@@ -146,7 +142,6 @@ const QuestionBoardPage = () => {
           ))}
         </PostSummaryWrapper>
         <Pagination
-          themeState={themeState}
           page={page}
           size={size}
           total={total}

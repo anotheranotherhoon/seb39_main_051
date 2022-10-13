@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 const PostSummary = (props) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const date = props.createdAt
     .split('.')[0]
     .replace(/-/g, '.')
     .replace(/T/, '/');
   return (
-    <PostCardLayout themeState={themeState}>
+    <PostCardLayout>
       <PostCardWrapper>
         <PostCardTitle onClick={props.onClick}>{props.title}</PostCardTitle>
         <PostCardInfo>
@@ -28,9 +27,9 @@ const PostCardLayout = styled.div`
   font-size: 1.8rem;
   border-bottom: 1px solid #8d8d8d;
   background-color: ${(props) =>
-    props.themeState === 'light' ? '#FEDD89' : 'var(--color-gray )'};
+    props.theme.theme === 'light' ? '#FEDD89' : 'var(--color-gray )'};
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-gray)' : 'var(--color-white)'};
+    props.theme.theme === 'light' ? 'var(--color-gray)' : 'var(--color-white)'};
   width: 100%;
   @media screen and (max-width: 413px) {
     font-size: 1.5rem;
@@ -43,7 +42,6 @@ const PostCardWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 1%;
-  /* border:1px solid blue; */
   @media screen and (max-width: 413px) {
     align-items: stretch;
     flex-direction: column;

@@ -7,14 +7,13 @@ import BorderLayout from '../../components/BorderLayout';
 import UserName from '../../components/UserName';
 
 const UserNamePage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const {userPicture} = useSelector((state)=>state.userInfoSlice);
 
   return (
     <>
       <BorderLayout>
         <Layout>
-          <LeftContent themeState={themeState}>
+          <LeftContent>
             <div className='mobile'>
               <a href='/mypage'>
                 <FontAwesomeIcon
@@ -26,11 +25,10 @@ const UserNamePage = () => {
               <UserProfileImage src={userPicture}/>
               <div>
                 <UserNameInput
-                  themeState={themeState}
                   placeholder='변경할 닉네임을 입력하세요.'
                 />
                 <BasicButton
-                  themeState={themeState}
+                  
                   width='30%'
                   height='3rem'
                   color='var(--color-white)'
@@ -44,7 +42,6 @@ const UserNamePage = () => {
               <UserProfileImage src={userPicture} />
               <a href='/mypage'>
                 <BasicButton
-                  themeState={themeState}
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -55,7 +52,6 @@ const UserNamePage = () => {
               </a>
               <a href='/userimg'>
                 <BasicButton
-                  themeState={themeState}
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -66,7 +62,6 @@ const UserNamePage = () => {
               </a>
               <a href='/username'>
                 <BasicButton
-                  themeState={themeState}
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -78,7 +73,6 @@ const UserNamePage = () => {
               </a>
               <a href='/userpassword'>
                 <BasicButton
-                  themeState={themeState}
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -89,7 +83,7 @@ const UserNamePage = () => {
               </a>
             </div>
           </LeftContent>
-          <RightContent themeState={themeState}>
+          <RightContent >
             <UserName />
           </RightContent>
         </Layout>
@@ -180,7 +174,7 @@ const RightContent = styled.div`
   width: 80%;
   border: 1rem solid
     ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-orange)'
         : 'var(--color-gray)'};
   border-radius: 1.5rem;
@@ -195,7 +189,7 @@ const UserNameInput = styled.input`
   width: 100%;
   height: 3rem;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border: none;
   border-radius: 1.5rem;

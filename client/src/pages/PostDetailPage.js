@@ -12,7 +12,6 @@ import { toast } from 'react-toastify';
 import axiosInstance from '../utils/axiosInstance';
 
 const PostDetailPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { isLoggedIn, userId } = useSelector((state) => state.userInfoSlice);
   const navigate = useNavigate();
   const params = useParams();
@@ -139,10 +138,10 @@ const PostDetailPage = () => {
   return (
     <BorderLayout>
       <Toast />
-      <Title themeState={themeState}>{title}</Title>
+      <Title>{title}</Title>
       <ContentInfo>
-        <Category themeState={themeState}>{category}</Category>
-        <Writer themeState={themeState}>
+        <Category>{category}</Category>
+        <Writer>
           <img src={picture} alt='프로필사진' />
           {nickname}
         </Writer>
@@ -167,10 +166,10 @@ const PostDetailPage = () => {
       <LikesWrapper>
         <div onClick={() => handlePostLike()}>❤️ {likeCount}</div>
       </LikesWrapper>
-      <CommentToTal themeState={themeState}>
+      <CommentToTal>
         댓글 {comments.length}개
       </CommentToTal>
-      <PostCommentInput themeState={themeState}>
+      <PostCommentInput>
         <label id='postComment' />
         <input
           id='postComment'
@@ -211,7 +210,7 @@ const Title = styled.div`
   font-size: 2rem;
   font-weight: bold;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
 `;
 const ContentInfo = styled.div`
   display: flex;
@@ -223,10 +222,10 @@ const Category = styled.div`
   padding: 1rem;
   border-radius: 1.5rem;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-white)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-white)' : '#D2D2D2'};
   text-align: center;
   background-color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? ' var(--color-orange)'
       : 'var(--color-gray)'};
   min-width: 8.8rem;
@@ -240,7 +239,7 @@ const Writer = styled.div`
   margin-right: 1rem;
   min-width: 11.8rem;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
   img {
     display: inline;
     height: 2.4rem;
@@ -269,7 +268,7 @@ const CommentToTal = styled.div`
   font-weight: bold;
   margin-bottom: 0.5%;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-black)' : 'var(--color-white)'};
+    props.theme.theme === 'light' ? 'var(--color-black)' : 'var(--color-white)'};
 `;
 
 const PostCommentInput = styled.div`
@@ -280,12 +279,12 @@ const PostCommentInput = styled.div`
     margin-right: 0.5%;
     border: 1px solid #d4d4d4;
     background: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border-radius: 0.3rem;
     color: ${(props) =>
-      props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+      props.theme.theme === 'light' ? 'var(--color-black)' : '#D2D2D2'};
   }
   button {
     width: 5%;

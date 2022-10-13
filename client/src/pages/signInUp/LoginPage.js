@@ -4,17 +4,16 @@ import { useSelector } from 'react-redux';
 import Form from '../../components/Form';
 import {useState } from 'react';
 const LoginPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const messageArr = ['끈기가', '곧', '실력', '매일메일', 'Support Your habbit!']
   const [items, setItems] = useState(messageArr)
 
   return (
     <>
-      <NavigationBar themeState={themeState} />
-      <Container themeState={themeState}>
-        <Wrapper themeState={themeState}>
+      <NavigationBar />
+      <Container>
+        <Wrapper>
           <MessageWrapper>
-            <Message themeState={themeState}>
+            <Message>
               <div>
               언젠가는 반드시 
               </div>
@@ -54,7 +53,7 @@ const Wrapper = styled.div`
   width: 85%;
   height: auto;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   border-radius: 1.5rem;
 `;
 const Message = styled.div`
@@ -90,7 +89,6 @@ const AnimationWrapper = styled.span`
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-  /* animation-direction: alternate; */
   margin:1%
   }
   span:nth-child(1){

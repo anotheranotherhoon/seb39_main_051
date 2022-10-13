@@ -22,7 +22,6 @@ const CategoryCard = ({
   handleClick,
   isSubscribe,
 }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -74,7 +73,6 @@ const CategoryCard = ({
           isSubscribe ? (
             <>
               <CategoryCardWrapper
-                themeState={themeState}
                 isSubscribe={isSubscribe}
               >
                 <SubscribeMark />
@@ -88,7 +86,6 @@ const CategoryCard = ({
           ) : (
             <>
               <CategoryCardWrapper
-                themeState={themeState}
                 isSubscribe={isSubscribe}
               >
                 <LogoLayout>
@@ -102,7 +99,6 @@ const CategoryCard = ({
         ) : isSubscribe ? (
           <>
             <CategoryCardWrapper
-              themeState={themeState}
               isSubscribe={isSubscribe}
             >
               <SubscribeMark />
@@ -116,7 +112,6 @@ const CategoryCard = ({
         ) : (
           <>
             <CategoryCardWrapper
-              themeState={themeState}
               isSubscribe={isSubscribe}
             >
               <LogoLayout>
@@ -159,7 +154,7 @@ const CategoryCardWrapper = styled.div`
   border-radius: 1.5rem;
   cursor: pointer;
   background-color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? props.isSubscribe
         ? 'var(--color-orange)'
         : 'var(--color-yellow)'
@@ -168,7 +163,7 @@ const CategoryCardWrapper = styled.div`
       : 'var(--color-black)'};
   :hover {
     background-color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-orange)'
         : 'var(--color-navy)'};
   }

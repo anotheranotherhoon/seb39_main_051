@@ -6,8 +6,6 @@ import BasicButton from './BasicButton';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
-
   const numPages = Math.ceil(total / 10);
 
   const questionCategoryArr = [
@@ -120,7 +118,6 @@ const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
               key={1}
               onClick={() => setPage(1)}
               aria-current={page === numPages ? 'page' : null}
-              themeState={themeState}
               width='4rem'
               height='4rem'
               backGroundColor='var(--color-orange)'
@@ -136,7 +133,6 @@ const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
                   key={page - 2 + i}
                   onClick={handleOnClick}
                   aria-current={page - 2 + i === page ? 'page' : null}
-                  themeState={themeState}
                   width='4rem'
                   height='4rem'
                   backGroundColor='var(--color-orange)'
@@ -150,7 +146,6 @@ const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
               key={numPages}
               onClick={() => setPage(numPages)}
               aria-current={page === numPages ? 'page' : null}
-              themeState={themeState}
               width='4rem'
               height='4rem'
               backGroundColor='var(--color-orange)'
@@ -165,7 +160,6 @@ const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
               key={1}
               onClick={() => setPage(1)}
               aria-current={page === 1 ? 'page' : null}
-              themeState={themeState}
               width='4rem'
               height='4rem'
               backGroundColor='var(--color-orange)'
@@ -181,7 +175,6 @@ const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
                   key={numPages - 4 + i}
                   onClick={handleOnClick}
                   aria-current={numPages - 4 + i === page ? 'page' : null}
-                  themeState={themeState}
                   width='4rem'
                   height='4rem'
                   backGroundColor='var(--color-orange)'
@@ -199,7 +192,6 @@ const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
                 key={i + 1}
                 onClick={handleOnClick}
                 aria-current={page === i + 1 ? 'page' : null}
-                themeState={themeState}
                 width='4rem'
                 height='4rem'
                 backGroundColor='var(--color-orange)'
@@ -217,7 +209,6 @@ const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
                   key={i + 1}
                   onClick={handleOnClick}
                   aria-current={page === i + 1 ? 'page' : null}
-                  themeState={themeState}
                   width='4rem'
                   height='4rem'
                   backGroundColor='var(--color-orange)'
@@ -231,7 +222,6 @@ const Pagination = ({ total, page, setPage, setTotal, type, value }) => {
               key={numPages}
               onClick={() => setPage(numPages)}
               aria-current={page === numPages ? 'page' : null}
-              themeState={themeState}
               width='4rem'
               height='4rem'
               backGroundColor='var(--color-orange)'

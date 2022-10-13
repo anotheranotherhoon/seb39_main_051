@@ -1,14 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import BasicButton from './BasicButton';
 import { setCookie } from '../utils/cookie';
 import { useNavigate } from 'react-router-dom';
 
 const Form = (props) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
-
   const navigate = useNavigate();
   const [certificationBtn, setCertificationBtn] = useState('인증번호보내기');
   const [inputValue, setInputValue] = useState({
@@ -186,12 +183,12 @@ const Form = (props) => {
   };
 
   return (
-    <Layout themeState={themeState}>
+    <Layout>
       <Title>{props.status === 'login' ? '로그인' : '회원가입'}</Title>
       <form>
         {props.status === 'login' ? (
           <>
-            <InputWrapper themeState={themeState}>
+            <InputWrapper>
               <label id='email'>이메일</label>
               <input
                 id='email'
@@ -201,7 +198,7 @@ const Form = (props) => {
                 required
               />
             </InputWrapper>
-            <InputWrapper themeState={themeState}>
+            <InputWrapper>
               <label id='password'>비밀번호</label>
               <input
                 id='password'
@@ -214,7 +211,7 @@ const Form = (props) => {
           </>
         ) : (
           <>
-            <InputWrapper themeState={themeState}>
+            <InputWrapper>
               <label id='nickName'>닉네임</label>
               <input
                 id='nickName'
@@ -223,7 +220,7 @@ const Form = (props) => {
                 required
               />
             </InputWrapper>
-            <InputWrapper themeState={themeState}>
+            <InputWrapper>
               <label id='email'>이메일</label>
               <span>{emailDesc}</span>
               <Certification
@@ -242,7 +239,7 @@ const Form = (props) => {
                 required
               />
             </InputWrapper>
-            <InputWrapper themeState={themeState}>
+            <InputWrapper>
               <label id='certificationNumber'>이메일 인증번호</label>
               <Certification
                 className='beforeMail'
@@ -258,7 +255,7 @@ const Form = (props) => {
                 required
               />
             </InputWrapper>
-            <InputWrapper themeState={themeState}>
+            <InputWrapper>
               <label id='password'>비밀번호</label>
               <input
                 id='password'
@@ -270,7 +267,7 @@ const Form = (props) => {
               />
               <span>{passwordDesc}</span>
             </InputWrapper>
-            <InputWrapper themeState={themeState}>
+            <InputWrapper >
               <label id='rePassword'>비밀번호 확인</label>
               <input
                 id='rePassword'
@@ -292,11 +289,11 @@ const Form = (props) => {
           onClick={submitHandler}
         />
         {props.status === 'login' ? (
-          <Redirect themeState={themeState}>
+          <Redirect>
             <a href='/signup'>회원가입하러가기 </a>
           </Redirect>
         ) : (
-          <Redirect themeState={themeState}>
+          <Redirect>
             <a href='/login'>로그인하러가기 </a>
           </Redirect>
         )}
@@ -309,7 +306,7 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? 'var(--color-white)'
       : 'var(--color-dark-bg-color )'};
   min-width: 47rem;
@@ -354,14 +351,10 @@ const InputWrapper = styled.div`
     width: 100%;
     height: 3rem;
     margin: 0.5rem 0;
-    background-color: ${(props) =>
-      props.themeState === 'light'
-        ? 'var(--color-white)'
-        : 'var(--color-gray)'};
     border: 1px solid #d2d2d2;
+    background-color :  ${(props) => props.theme.theme === 'light'  ? 'var(--color-white)'  :  'var(--color-gray)' };
     border-radius: 0.3rem;
-    color: ${(props) =>
-      props.themeState === 'light' ? 'var(--color-black)' : '#D2D2D2'};
+      color : ${(props) => props.theme.theme === 'light'  ? 'var(--color-black)'  :  '#D2D2D2' }
   }
 `;
 const Redirect = styled.div`
@@ -371,8 +364,8 @@ const Redirect = styled.div`
     text-decoration: none;
     text-align: center;
     color: ${(props) =>
-      props.themeState === 'light'
-        ? 'var(--color-blacr)'
+      props.theme.theme === 'light'
+        ? 'var(--color-black)'
         : 'var(--color-white)'};
     margin-bottom: 1.5rem;
   }

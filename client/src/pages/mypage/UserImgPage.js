@@ -9,7 +9,6 @@ import axiosInstance from '../../utils/axiosInstance';
 import { setCookie } from '../../utils/cookie';
 
 const UserImgPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const {userPicture} = useSelector((state)=>state.userInfoSlice)
 
   const formData = new FormData();
@@ -33,7 +32,7 @@ const UserImgPage = () => {
     <>
       <BorderLayout>
         <Layout>
-          <LeftContent themeState={themeState}>
+          <LeftContent>
             <div className='mobile'>
               <a href='/mypage'>
                 <FontAwesomeIcon
@@ -45,7 +44,7 @@ const UserImgPage = () => {
               <UserProfileImage src={userPicture} />
               <div>
                 <span>사진을 드래그해주세요.</span>
-                <InputImgWrapper themeState={themeState}>
+                <InputImgWrapper>
                   <InputImg
                     type='file'
                     accept='image/*'
@@ -53,7 +52,7 @@ const UserImgPage = () => {
                   />
                 </InputImgWrapper>
                 <BasicButton
-                  themeState={themeState}
+                
                   width='30%'
                   height='4rem'
                   color='var(--color-white)'
@@ -68,7 +67,7 @@ const UserImgPage = () => {
               <UserProfileImage src={userPicture}/>
               <a href='/mypage'>
                 <BasicButton
-                  themeState={themeState}
+                
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -79,7 +78,7 @@ const UserImgPage = () => {
               </a>
               <a href='/userimg'>
                 <BasicButton
-                  themeState={themeState}
+                
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -91,7 +90,7 @@ const UserImgPage = () => {
               </a>
               <a href='/username'>
                 <BasicButton
-                  themeState={themeState}
+                
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -102,7 +101,7 @@ const UserImgPage = () => {
               </a>
               <a href='/userpassword'>
                 <BasicButton
-                  themeState={themeState}
+                
                   width='100%'
                   height='4rem'
                   color='var(--color-white)'
@@ -113,7 +112,7 @@ const UserImgPage = () => {
               </a>
             </div>
           </LeftContent>
-          <RightContent themeState={themeState}>
+          <RightContent>
             <UserImg
               handleImgInput={handleImgInput}
               handleOnClick={handleOnClick}
@@ -214,7 +213,7 @@ const RightContent = styled.div`
   width: 80%;
   border: 1rem solid
     ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-orange)'
         : 'var(--color-gray)'};
   border-radius: 1.5rem;
@@ -229,7 +228,7 @@ const InputImgWrapper = styled.div`
   width: 100%;
   height: 30%;
   background-color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-gray)'};
   color: var(--color-white);
   border-radius: 1.5rem;
   margin-bottom: 3rem;

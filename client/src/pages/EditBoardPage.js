@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -9,7 +8,6 @@ import BorderLayout from '../components/BorderLayout';
 import axiosInstance from '../utils/axiosInstance';
 
 const EditBoardPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { state } = useLocation();
   const navigate = useNavigate();
   const [editedTitle, setEditedTitle] = useState(state.title);
@@ -56,7 +54,7 @@ const EditBoardPage = () => {
     <BorderLayout>
       <form>
         <h1>{boardName}</h1>
-        <InputWrapper themeState={themeState}>
+        <InputWrapper>
           <label id='editedTitle' />
           <input
             id='editedTitle'
@@ -74,7 +72,7 @@ const EditBoardPage = () => {
           setSelected={setSelected}
           handleCategory={handleBoardCategory}
         />
-        <InputWrapper themeState={themeState}>
+        <InputWrapper>
           <label id='contentForm' />
           <textarea
             id='contentForm'
@@ -89,7 +87,7 @@ const EditBoardPage = () => {
       </form>
       <ButtonWrapper>
         <BasicButton
-          themeState={themeState}
+        
           width='5.5rem'
           height='4rem'
           color='var(--color-white)'
@@ -99,7 +97,7 @@ const EditBoardPage = () => {
           onClick={handleEditPostCancel}
         />
         <BasicButton
-          themeState={themeState}
+        
           width='5.5rem'
           height='4rem'
           color='var(--color-white)'
@@ -121,11 +119,11 @@ const InputWrapper = styled.div`
     font-size: 1.8rem;
     margin: 0.5rem 0;
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
     background-color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border: 1px solid #d2d2d2;
@@ -139,11 +137,11 @@ const InputWrapper = styled.div`
     resize: none;
     margin: 0.5rem 0;
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
     background-color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border: 1px solid #d2d2d2;

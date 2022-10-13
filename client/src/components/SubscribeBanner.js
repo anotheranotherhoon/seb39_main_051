@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SubscribeBanner = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const {isLoggedIn} = useSelector((state)=>state.userInfoSlice)
   const navigate = useNavigate();
   const handleGoToSubscribe = () => {
@@ -21,7 +20,6 @@ const SubscribeBanner = () => {
   return (
     <SubscribeBtn
       onClick={() => handleGoToSubscribe()}
-      themeState={themeState}
     >
       면접질문 구독하러 가기
     </SubscribeBtn>
@@ -39,12 +37,12 @@ const SubscribeBtn = styled.div`
   padding: 1%;
   position: fixed;
   background: ${(props) =>
-    props.themeState === 'light' ? '#FEDD89' : 'var(--color-gray)'};
+    props.theme.theme === 'light' ? '#FEDD89' : 'var(--color-gray)'};
   color: white;
   cursor: pointer;
   :hover{
     background: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-orange)' : 'var(--color-black)'};
+    props.theme.theme === 'light' ? 'var(--color-orange)' : 'var(--color-black)'};
   }
 `;
 

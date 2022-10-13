@@ -8,7 +8,6 @@ import BorderLayout from '../components/BorderLayout';
 import axiosInstance from '../utils/axiosInstance';
 
 const EditQuestionPage = () => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
   const { state } = useLocation();
   const navigate = useNavigate();
   const [editedQuestion, setEditedQuestion] = useState(state.question)
@@ -34,7 +33,7 @@ const EditQuestionPage = () => {
     <BorderLayout>
       <form>
         <h1>질문 수정</h1>
-        <InputWrapper themeState={themeState}>
+        <InputWrapper>
           <label id='editetQuestion' />
           <input
             id='editetQuestion'
@@ -47,12 +46,11 @@ const EditQuestionPage = () => {
           />
         </InputWrapper>
         <ContentInfo>
-                  <Category themeState={themeState}>{state.category}</Category>
+                  <Category>{state.category}</Category>
                   </ContentInfo>
       </form>
       <ButtonWrapper>
           <BasicButton
-            themeState={themeState}
             width='5.5rem'
             height='4rem'
             color='var(--color-white)'
@@ -62,7 +60,6 @@ const EditQuestionPage = () => {
             onClick={handleEditQuestionCancel}
           />
           <BasicButton
-            themeState={themeState}
             width='5.5rem'
             height='4rem'
             color='var(--color-white)'
@@ -83,11 +80,11 @@ const InputWrapper = styled.div`
     font-size: 1.8rem;
     margin: 0.5rem 0;
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
     background-color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border: 1px solid #d2d2d2;
@@ -101,11 +98,11 @@ const InputWrapper = styled.div`
     resize: none;
     margin: 0.5rem 0;
     color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-black)'
         : 'var(--color-white)'};
     background-color: ${(props) =>
-      props.themeState === 'light'
+      props.theme.theme === 'light'
         ? 'var(--color-white)'
         : 'var(--color-gray)'};
     border: 1px solid #d2d2d2;
@@ -131,10 +128,10 @@ const Category = styled.div`
   padding: 1rem;
   border-radius: 1.5rem;
   color: ${(props) =>
-    props.themeState === 'light' ? 'var(--color-white)' : '#D2D2D2'};
+    props.theme.theme === 'light' ? 'var(--color-white)' : '#D2D2D2'};
   text-align: center;
   background-color: ${(props) =>
-    props.themeState === 'light'
+    props.theme.theme === 'light'
       ? ' var(--color-orange)'
       : 'var(--color-gray)'};
   min-width: 8.8rem;

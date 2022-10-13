@@ -12,7 +12,6 @@ import {
   faGear,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSelector } from 'react-redux';
 import SubscribeMarkMobile from '../assets/SubscribeMarkMobile';
 
 const CategoryCardMobile = ({
@@ -21,7 +20,6 @@ const CategoryCardMobile = ({
   handleClick,
   isSubscribe,
 }) => {
-  const themeState = useSelector((state) => state.themeSlice).theme;
 
   let content = null;
   switch (categoryName) {
@@ -64,7 +62,6 @@ const CategoryCardMobile = ({
         {isSubscribe ? (
           <>
             <CategoryCardWrapper
-              themeState={themeState}
               isSubscribe={isSubscribe}
             >
               <SubscribeMarkMobile />
@@ -75,7 +72,6 @@ const CategoryCardMobile = ({
         ) : (
           <>
             <CategoryCardWrapper
-              themeState={themeState}
               isSubscribe={isSubscribe}
             >
               <div>{content}</div>
@@ -115,14 +111,7 @@ const CategoryCardWrapper = styled.div`
   height: 5rem;
   border-radius: 1rem;
   cursor: pointer;
-  background-color: ${(props) =>
-    props.themeState === 'light'
-      ? props.isSubscribe
-        ? 'var(--color-yellow)'
-        : 'var(--color-orange)'
-      : props.isSubscribe
-      ? 'var(--color-navy)'
-      : 'var(--color-black)'};
+  background-color: ${(props) => props.theme.theme === 'light' ? props.isSubscribe ? 'var(--color-yellow)' : 'var(--color-orange)' : props.isSubscribe ? 'var(--color-navy)' : 'var(--color-black)'};
 `;
 
 export default CategoryCardMobile;
